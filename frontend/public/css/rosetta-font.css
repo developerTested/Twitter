@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'rosettaIconFont';
+    src: url("../fonts/rosetta-icons-Regular.eot"); /* IE9 Compat Modes */
+    src: url("../fonts/rosetta-icons-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+         url("../fonts/rosetta-icons-Regular.woff") format("woff"), /* Pretty Modern Browsers */
+         url("../fonts/rosetta-icons-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+.rosetta {
+    font-family: 'rosettaIconFont';
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+}
+
+.rosetta-home:before {
+    content: "\f053";
+}
+
+.rosetta-connect:before {
+    content: "\f050";
+}
+
+.rosetta-discover:before {
+    content: "\f052";
+}
+
+.rosetta-me:before {
+    content: "\f056";
+}
+
+.rosetta-message:before {
+    content: "\f054";
+}
+
+.rosetta-setting:before {
+    content: "\f059";
+}
+
+.rosetta-tweet:before {
+    content: "\f029";
+    background: rgba(0, 132, 180, .8);
+    padding: 3px 9px;
+    border-radius: 5px;
+    color: white;
+}
+
+.rosetta-bird:before {
+    content: "\f179";
+    color: #0084b4;
+    padding: 0 5em;
+}
+
+.rosetta-tweet:hover {
+    border-radius: 5px;
+}
