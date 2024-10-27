@@ -8,7 +8,7 @@ import Avatar from '@/components/Avatar'
 import Poll from '@/components/forms/Poll'
 import { ImCross } from 'react-icons/im'
 import Button from '../forms/Button'
-import EmojiPicker from '../Emoji'
+import EmojiPicker, { EmojiType } from '../Emoji'
 import { useAppSelector } from '@/hooks'
 
 type TweetProps = {
@@ -34,9 +34,9 @@ export default function TweetForm({ open, ...props }: TweetProps) {
         setInputText(input);
     };
 
-    const onEmojiClick = (emojiData: any, event: any) => {
+    const onEmojiClick = (emojiData: EmojiType) => {
         let text = inputText;
-        setInputText((text += emojiData.emoji));
+        setInputText((text += emojiData.char));
 
         setCharsLeft(maxChars - text.length);
         setPercent(text.length);
@@ -146,14 +146,12 @@ export default function TweetForm({ open, ...props }: TweetProps) {
                 </form>
             </div>
 
-            <EmojiPicker />
-
             {showEmojiPicker ? (
                 <ClickAwayListener
-                    onClickAway={() => { }}
+                    onClickAway={() => setShowEmojiPicker(false)}
                 >
                     <div className="block w-full h-full ">
-                        <EmojiPicker />
+                        <EmojiPicker onEmojiClick={onEmojiClick} />
                     </div>
                 </ClickAwayListener>
             ) : ''}
