@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppRootState } from "@/redux/store";
 import { UserType } from "@/types";
-import { login, signUp } from "./actions/auth";
+import { login, logout, signUp } from "./actions/auth";
 
 export type AuthState = {
     loading: boolean,
@@ -28,18 +28,15 @@ const authReducer = createSlice({
         setAccessToken: (state, action) => {
             state.accessToken = action.payload;
         },
+        setRefreshToken: (state, action) => {
+            state.refreshToken = action.payload;
+        },
         resetUser: (state) => {
             state.loggedIn = false;
             state.user = null;
             state.accessToken = null;
             state.refreshToken = null;
         },
-        logout: (state) => {
-            state.loggedIn = false;
-            state.user = null;
-            state.accessToken = null;
-            state.refreshToken = null;
-        }
     },
     extraReducers: (builder) => {
         builder
@@ -58,6 +55,13 @@ const authReducer = createSlice({
                 state.loading = false;
                 state.error = action.payload as string;
             })
+            .addCase(logout.fulfilled, (state) => {
+                state.loading = false;
+                state.loggedIn = false;
+                state.user = null;
+                state.accessToken = null;
+                state.refreshToken = null;
+            })
             .addCase(signUp.pending, (state) => {
                 state.loading = true;
             })
@@ -71,8 +75,8 @@ const authReducer = createSlice({
     }
 });
 
-export const { setAccessToken, logout } = authReducer.actions;
-export const selectToken = (state: AppRootState) => state.auth.accessToken;
+export const { resetUser, setAccessToken , setRefreshToken} = authReducer.actions;
+export const getAccessToken = (state: AppRootState) => state.auth.accessToken;
 export const getRefreshToken = (state: AppRootState) => state.auth.refreshToken;
 
 export default authReducer.reducer

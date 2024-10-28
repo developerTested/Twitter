@@ -1,8 +1,8 @@
-import { Post } from "@/types";
+import { PostType } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 type initialStateType = {
-    posts: Post[],
+    posts: PostType[],
 }
 
 const initialState: initialStateType = {
