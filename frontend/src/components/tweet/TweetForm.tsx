@@ -16,7 +16,7 @@ type TweetProps = {
 }
 
 export default function TweetForm({ open, ...props }: TweetProps) {
-    const maxChars = 80;
+    const maxChars = import.meta.env.VITE_MAX_CHARS || 100;
 
     const { theme } = useAppSelector(state => state.theme);
     const [addPoll, setAddPoll] = useState(false);

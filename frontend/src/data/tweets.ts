@@ -6,7 +6,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: false,
         },
@@ -22,7 +22,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: true,
         },
@@ -38,7 +38,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: false,
         },
@@ -54,7 +54,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: false,
         },
@@ -70,7 +70,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: false,
         },
@@ -86,7 +86,7 @@ const tweetList: TweetType[] = [
         content: 'Hello World',
         user: {
             id: 1,
-            name: 'tom',
+            user_name: 'tom',
             displayName:'Tom',
             verified: false,
         },

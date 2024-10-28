@@ -67,16 +67,12 @@ export default function Header() {
             <div className="px-4 flex items-center justify-between w-full h-full">
                 {loggedIn ?
                     <div className="flex items-center gap-4 shrink-0">
-                        <Button size='lg' variant="icon" className='lg:hidden shrink-0' onClick={() => dispatch(setMobileMenu(!mobileMenu))}>
-                            <IoMenuOutline className='w-8 h-8' />
-                        </Button>
-
                         <div className="flex items-center">
                             {menuItems.map((menu, i) => <Link key={i} to={menu.url} className={`px-4 py-3 flex items-center gap-2 border-b-4 ${activeMenu === menu.url ? "border-b-blue-500" : "border-transparent hover:border-b-blue-500 "}`}>
                                 <div className="block">
                                     {menu.icon}
                                 </div>
-                                <div className="name hidden md:block">
+                                <div className="name hidden lg:block">
                                     {menu.text}
                                 </div>
                             </Link>)}
@@ -108,13 +104,13 @@ export default function Header() {
                                     <DropdownMenuItem>Subscription</DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
+                                        <Link to="/logout" className="flex items-center gap-4">
                                         <IoExit />
                                         <span>Log out</span>
+                                        </Link>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
-
-
 
                             <button onClick={() => dispatch(setShowDialog(true))}>
                                 Tweet

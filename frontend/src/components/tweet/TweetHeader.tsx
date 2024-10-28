@@ -1,8 +1,9 @@
 import { UserType } from '@/types';
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { BsChevronDown, BsCodeSlash, BsFillEmojiFrownFill, BsFillFlagFill, BsVolumeMuteFill } from 'react-icons/bs'
 import { ImUserPlus } from "react-icons/im"
 import { MdBlockFlipped, MdPlaylistAddCheck, MdVerified } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 
 type headerProps = {
@@ -29,22 +30,22 @@ export default function TweetHeader({ user, ...props }: headerProps) {
         },
         {
             href: '/',
-            text: `Follow @${user.name}`,
+            text: `Follow @${user.user_name}`,
             icon: <ImUserPlus className="w-5 h-5" />,
         },
         {
             href: '/',
-            text: `Add/remove @${user.name} from Lists`,
+            text: `Add/remove @${user.user_name} from Lists`,
             icon: <MdPlaylistAddCheck className="w-5 h-5" />,
         },
         {
             href: '/',
-            text: `Mute @${user.name}`,
+            text: `Mute @${user.user_name}`,
             icon: <BsVolumeMuteFill className="w-5 h-5" />,
         },
         {
             href: '/',
-            text: `Block @${user.name}`,
+            text: `Block @${user.user_name}`,
             icon: <MdBlockFlipped className="w-5 h-5" />,
         },
         {
@@ -65,9 +66,9 @@ export default function TweetHeader({ user, ...props }: headerProps) {
         <div className="tweet-header flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 text-sm">
                 <div className="tweet-user flex items-center gap-1">
-                    <span className="name font-semibold">{user.displayName}</span>
-                    {user.verified && <MdVerified className="w-6 h-6 text-blue-500" /> }
-                    <span className='ml-1 text-sm'>@{user.name}</span>
+                    <Link to={`/${user.user_name}`} className="name font-semibold">{user.displayName}</Link>
+                    {user.verified && <MdVerified className="w-6 h-6 text-blue-500" />}
+                    <span className='ml-1 text-sm'>@{user.user_name}</span>
                 </div>
                 <span className="block">•</span>
                 <span className="time">

@@ -11,17 +11,17 @@ export default function WhoToFollow() {
             <h1 className="text-lg mb-2">Who to follow</h1>
 
             <div className="flex flex-col gap-2">
-                {WhoToFollowData.items.map((x: any) => <div key={x.name} className="flex items-center justify-between gap-1">
+                {WhoToFollowData.items.map((x) => <div key={x.user_name} className="flex items-center justify-between gap-1">
                     <div className="w-full flex gap-2">
                         <div className="avatar">
                             <Avatar src={x.avatar} alt={x.displayName} rounded />
                         </div>
                         <div className="block">
                             <div className="tweet-user flex items-center gap-1">
-                                <Link to={x.name} className="name font-semibold">{x.displayName ?? x.name}</Link>
+                                <Link to={`/${x.user_name}`} className="name font-semibold">{x.displayName ?? x.user_name}</Link>
                                 {x.verified && <MdVerified className="w-6 h-6 text-blue-500" />}
                             </div>
-                            <div className='text-sm'>{x.name}</div>
+                            <div className='text-sm'>{x.user_name}</div>
                         </div>
                     </div>
 

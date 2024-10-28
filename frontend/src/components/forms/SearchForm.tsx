@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react';
 import Input from './Input'
 import { CiSearch } from 'react-icons/ci';
 
 export default function SearchForm() {
-
 
     const searchRef = useRef(null);
 
@@ -12,7 +11,7 @@ export default function SearchForm() {
     }
 
     return (
-        <div className='hidden md:block relative w-full xl:w-500 m-auto group border bg-slate-100 focus-within:bg-white dark:bg-input border-white dark:border-input dark:text-white rounded-full'>
+        <div className='hidden lg:block relative w-full xl:w-500 m-auto group border bg-slate-100 focus-within:bg-white dark:bg-input border-white dark:border-input dark:text-white rounded-full'>
             <form onSubmit={handleSubmit} className='w-full flex items-center group-focus-within:shadow-lg rounded-full'>
                 <Input ref={searchRef} type="search" name="search" placeholder='Connecting People...' className='bg-transparent dark:bg-transparent border-none px-4 p-2.5 outline-none' />
 

@@ -11,7 +11,7 @@ const buttonStyles = cva(["flex", "items-center", "justify-center", "disabled:cu
         secondary: ["bg-black dark:bg-white disabled:black/70 text-white dark:text-black"],
         primary: ["uppercase bg-white hover:bg-slate-200 dark:bg-white/20 text-white"],
         info: ["uppercase bg-blue-600 hover:bg-slate-200 dark:bg-white/20 text-white"],
-        icon: ["bg-gray-50 hover:bg-gray-100 dark:bg-white/20 text-center py-2.5 px-4"]
+        icon: ["bg-gray-50 hover:bg-gray-100 dark:bg-white/20"]
       },
       size: {
         default: ["rounded-full", "px-4 py-2", "text-center", "block", "border", "dark:border-transparent"],

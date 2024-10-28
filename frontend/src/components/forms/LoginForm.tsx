@@ -17,7 +17,6 @@ export default function LoginPage() {
     const [passwordShow, setPasswordShow] = React.useState(false);
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
-    const { user } = useAppSelector((state) => state.auth)
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
