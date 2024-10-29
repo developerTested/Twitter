@@ -1,32 +1,33 @@
-import Button from "@/components/forms/Button";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { logout } from "@/redux/slices/authSlice";
+import { logout } from "@/redux/slices/actions/auth";
 import { FaTwitter } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "@/components/forms/Button";
 
 export default function LogoutPage() {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { loggedIn, error } = useAppSelector(state => state.auth)
+    const { loggedIn } = useAppSelector(state => state.auth)
 
-    if (!loggedIn) {
-        navigate('/auth/login');
-    }
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate('/auth/login');
+        }
+    }, [loggedIn])
 
     const handleLogout = async () => {
         try {
 
-            dispatch(logout())
+            await dispatch(logout()).unwrap()
 
             toast.success("You've been logout successfully")
 
             navigate('/')
         } catch (e: any) {
-            console.log(error);
-            
-            toast.error(error)
+            toast.error(e.message)
         }
     }
 

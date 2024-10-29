@@ -92,8 +92,7 @@ export default function TweetForm({ open, ...props }: TweetProps) {
     return (
         <div className='w-full bg-white dark:bg-black/20 dark:text-white rounded-md p-2 relative'>
             <div className="flex gap-2">
-
-                <div className="avatar flex-shrink-0">
+                <div className="avatar shrink-0">
                     <Avatar rounded />
                 </div>
 

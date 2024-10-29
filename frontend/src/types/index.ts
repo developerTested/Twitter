@@ -1,3 +1,12 @@
+export type ApiError = Error & {
+    success: boolean,
+    statusCode: number,
+    message: string,
+    data: null,
+    errors: any[],
+    stack?: string,
+}
+
 export type loginType = {
     email: string,
     password: string
@@ -12,10 +21,10 @@ export type registerType = {
 
 export type UserType = {
     id: number,
-    name: string,
+    user_name: string,
     displayName?: string,
     avatar?: string,
-    verified? : boolean,
+    verified?: boolean,
     post?: number,
     followers?: number,
     following?: number,

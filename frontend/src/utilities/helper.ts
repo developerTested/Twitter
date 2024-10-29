@@ -1,32 +1,8 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import axios from "axios";
-
-export const Social_API = axios.create({
-    timeout: 60 * 1000,
-    withCredentials: true,
-})
-
-Social_API.interceptors.response.use(function (response) {
-    return response;
-}, function (error) {
-
-    let errorMessage = error;
-
-    if (error.response) {
-        const errorData = error.response;
-
-        errorMessage = {
-            status: errorData.status,
-            statusText: errorData.statusText,
-            data: errorData.data,
-        }
-    }
-
-    return Promise.reject(errorMessage);
-});
-
-
+import TwitterAPI from "./api";
+import { getRefreshToken, setAccessToken, setRefreshToken } from "@/redux/slices/authSlice";
+import { store } from "@/redux/store";
 export function getInitials(inputName: string) {
     const names = inputName.split(' ');
     let initials = names[0].substring(0, 1).toUpperCase();
@@ -53,4 +29,19 @@ export const unicodeToEmoji = (unicode: string) => {
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
+}
+
+
+export async function refreshToken() {
+    try {
+        const response = await TwitterAPI.post('/auth/refreshToken', {
+            refreshToken: getRefreshToken(store.getState()),
+        })
+
+        store.dispatch(setAccessToken(response.data.accessToken));
+        store.dispatch(setRefreshToken(response.data.refreshToken));
+
+    } catch (error) {
+        console.log(error);
+    }
 }

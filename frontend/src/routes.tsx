@@ -21,6 +21,14 @@ const routes = createBrowserRouter([
                 element: <App />,
             },
             {
+                path: '/explore',
+                element: <App />,
+            },
+            {
+                path: '/notifications',
+                element: <App />,
+            },
+            {
                 path: '/:name',
                 element: <Profile />,
                 children: [
