@@ -1,24 +1,10 @@
 import mongoose, { Model, Schema } from "mongoose"
 import bcrypt from "bcrypt"
+import { UserMethods, UserType } from "../types/authTypes";
 
-type UserMethods = {
-    isPasswordCorrect(password: string): Promise<Boolean>,
-}
+export type UserModel = Model<UserType, {}, UserMethods>;
 
-export type userType = {
-    _id: string,
-    display_name: string,
-    user_name: string,
-    email: string,
-    password: string,
-    avatar?: string,
-    bio?: string,
-    refreshToken?: string
-}
-
-export type UserModel = Model<userType, {}, UserMethods>;
-
-const userSchema = new Schema<userType, UserModel, UserMethods>({
+const userSchema = new Schema<UserType, UserModel, UserMethods>({
     display_name: {
         type: String,
         trim: true,

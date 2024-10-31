@@ -1,8 +1,9 @@
 import dotenv from "dotenv"
-import User, { userType } from "../models/user";
+import User from "../models/user";
 import ApiError from "./ApiError";
 import jwt from "jsonwebtoken";
 import { AUTH_FAILED } from "../constants";
+import { UserType } from "../types/authTypes";
 
 dotenv.config();
 
@@ -27,21 +28,21 @@ export const appConfig = {
 }
 
 export async function generateTokens(userId: string) {
-    
+
     try {
         const user = await User.findById(userId);
-        
+
         if (!user) {
             throw new ApiError(401, AUTH_FAILED)
         }
-        
+
         const accessToken = generateAccessToken(userId);
         const refreshToken = generateRefreshToken(userId);
-        
+
         user.refreshToken = refreshToken;
-        
+
         await user.save({ validateBeforeSave: false });
-        
+
         return {
             accessToken,
             refreshToken
@@ -54,7 +55,7 @@ export async function generateTokens(userId: string) {
 
 export function generateAccessToken(userId: string) {
     return jwt.sign({
-        id: userId,
+        _id: userId,
     }, appConfig.ACCESS_TOKEN_SECRET, {
         expiresIn: appConfig.ACCESS_TOKEN_EXPIRY
     })
@@ -62,12 +63,31 @@ export function generateAccessToken(userId: string) {
 
 export function generateRefreshToken(userId: string) {
     return jwt.sign({
-        id: userId,
-    }, appConfig.ACCESS_TOKEN_SECRET, {
-        expiresIn: appConfig.ACCESS_TOKEN_EXPIRY
+        _id: userId,
+    }, appConfig.REFRESH_TOKEN_SECRET, {
+        expiresIn: appConfig.REFRESH_TOKEN_EXPIRY
     })
 }
 
 export function verifyToken(token: string) {
-    return jwt.verify(token, appConfig.ACCESS_TOKEN_SECRET) as userType
+    try {
+        return jwt.verify(token, appConfig.ACCESS_TOKEN_SECRET) as UserType
+
+    } catch (error: any) {
+        if (error.name === 'TokenExpiredError') {
+            throw new ApiError(401, 'Token has expired.', error);
+        }
+        throw new ApiError(401, 'Invalid token');;
+    }
+}
+
+export function verifyRefreshToken(token: string) {
+    try {
+        return jwt.verify(token, appConfig.REFRESH_TOKEN_SECRET) as UserType
+    } catch (error: any) {
+        if (error.name === 'TokenExpiredError') {
+            throw new ApiError(401, 'Token has expired.', );
+        }
+        throw new ApiError(401, 'Invalid token');;
+    }
 }
