@@ -1,5 +1,6 @@
 export const DB_NAME = "twitter"
 // Auth
+export const USER_NOT_FOUND = "Profile does not exists!"
 export const USER_EXISTS = "Username or email already exists"
 export const AUTH_FAILED = 'These credentials do not match our records.'
 export const AUTH_PASS_FAIL = 'The provided password is incorrect.'

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "../utilities/ApiError";
 import { AUTH_FAILED, AUTH_REQUIRED } from "../constants";
-import User, { userType } from "../models/user";
+import User from "../models/user";
 import asyncHandler from "../utilities/asyncHandler";
 import { verifyToken } from "../utilities/helper";
 
@@ -21,7 +21,7 @@ const authMiddleware = asyncHandler(async (req: Request, res: Response, next: Ne
             throw new ApiError(401, AUTH_REQUIRED)
         }
 
-        const user = await User.findById(decodeToken._id).select(["-password", "-refreshToken"])
+        const user = await User.findById(decodeToken._id)
 
         if (!user) {
             throw new ApiError(401, AUTH_FAILED);
