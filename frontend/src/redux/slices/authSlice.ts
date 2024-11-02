@@ -75,7 +75,7 @@ const authReducer = createSlice({
     }
 });
 
-export const { resetUser, setAccessToken , setRefreshToken} = authReducer.actions;
+export const { resetUser, setAccessToken, setRefreshToken } = authReducer.actions;
 export const getAccessToken = (state: AppRootState) => state.auth.accessToken;
 export const getRefreshToken = (state: AppRootState) => state.auth.refreshToken;
 

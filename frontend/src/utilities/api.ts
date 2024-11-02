@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { getAccessToken, resetUser } from "@/redux/slices/authSlice";
 import { store } from "@/redux/store";
 import { refreshToken } from "./helper";
@@ -32,8 +32,8 @@ TwitterAPI.interceptors.request.use(function (config) {
  * Axios Response 
  */
 TwitterAPI.interceptors.response.use(
-    (response) => {
-        return response.data;
+    (response: AxiosResponse) => {
+        return response;
     },
     async error => {
         const originalRequest = error.config;

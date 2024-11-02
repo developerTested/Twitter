@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash, FaTwitter } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch } from '@/hooks';
 import { loginType } from '@/types';
 import { login } from '@/redux/slices/actions/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,7 +35,7 @@ export default function LoginPage() {
 
         try {
             setError('');
-            const response = await dispatch(login(data)).unwrap();
+            const response = await dispatch(login(data)).unwrap();            
             toast.success(response ? response.message : 'Welcome Back!');
             navigate('/');
         } catch (error: any) {
@@ -44,7 +44,6 @@ export default function LoginPage() {
             setError(errorMessage);
             toast.error(errorMessage);
         }
-
     }
 
     return (

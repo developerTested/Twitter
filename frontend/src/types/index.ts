@@ -22,10 +22,10 @@ export type registerType = {
 export type UserType = {
     id: number,
     user_name: string,
-    displayName?: string,
+    display_name?: string,
     avatar?: string,
     verified?: boolean,
-    post?: number,
+    tweets?: number,
     followers?: number,
     following?: number,
     about?: string,
@@ -37,24 +37,9 @@ export type UserType = {
 export type TweetType = {
     id: number,
     content: string,
-    images: object[] | string[],
+    images?: object[] | string[],
     user: UserType,
-    stats: StatsType,
-}
-
-export type PostCommentType = {
-    user: UserType,
-    content: string,
-}
-
-export type PostType = {
-    id: number,
-    content: string,
-    likes: number,
-    user: UserType,
-    comments?: PostCommentType[],
-    createdAt: Date,
-    updatedAt: Date,
+    stats?: StatsType,
 }
 
 export type StatsType = {

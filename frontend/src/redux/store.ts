@@ -2,9 +2,9 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import appSlice from './slices/appSlice';
-import postSlice from './slices/postSlice';
 import themeSlice from './slices/themeSlice';
 import authSlice from './slices/authSlice';
+import tweetSlice from './slices/tweetSlice';
 
 const persistConfig = {
   key: 'root',
@@ -15,8 +15,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   app: appSlice,
   auth: authSlice,
-  posts: postSlice,
   theme: themeSlice,
+  tweets: tweetSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
