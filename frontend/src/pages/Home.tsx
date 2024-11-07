@@ -1,6 +1,5 @@
 import WhoToFollow from '@/components/profile/WhoToFollow'
 import ProfileCard from '@/components/profile/ProfileCard'
-import tweetList from '@/data/tweets'
 import { Tweet, TweetList } from '@/components/tweet'
 import TweetForm from '@/components/tweet/TweetForm'
 import { useAppDispatch, useAppSelector } from '@/hooks'
@@ -10,10 +9,11 @@ export default function Home() {
 
   const dispatch = useAppDispatch()
   const auth = useAppSelector(state => state.auth);
+  const tweetList = useAppSelector(state => state.tweets.tweetList)
 
   if (!auth.loggedIn) {
     dispatch(resetUser());
-  }
+  }  
 
   return (
       <div className="flex gap-2 px-4">
@@ -21,9 +21,9 @@ export default function Home() {
           <ProfileCard />
         </div>
         <div className="flex flex-col flex-auto">
-          <TweetForm open={false} />
+          <TweetForm />
           <TweetList>
-            {tweetList.map((tweet, i) => <Tweet key={i} tweet={tweet} />)}
+            {tweetList.length > 0 ? tweetList.map((tweet, i) => <Tweet key={i} tweet={tweet} />) : ""}
           </TweetList>
         </div>
 
